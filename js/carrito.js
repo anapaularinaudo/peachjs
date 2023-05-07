@@ -78,6 +78,12 @@ function eliminarDelCarrito (e){
 
 botonVaciar.addEventListener("click", vaciarCarrito);
 function vaciarCarrito (){
+
+    Swal.fire(
+        '¿Estas seguro?',
+        'Se va a vaciar tu carrito :(',
+        'question'
+      )
     productosEnCarrito.length =0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
     cargarProductosCarrito();

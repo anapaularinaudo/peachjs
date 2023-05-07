@@ -1,95 +1,11 @@
-const productos = [
-    {
-        id: "buzo-1",
-        titulo: "Buzo Change",
-        imagen: "../img/buzochange.jpg",
-        precio: 20000,
-        categoria: {
-            nombre: "BUZOS",
-            id: "buzos"
-        }
-    },
-    {
-        id: "buzo-2",
-        titulo: "Buzo Culture",
-        imagen: "../img/buzoculture.jpg",
-        precio: 20000,
-        categoria: {
-            nombre: "BUZOS",
-            id: "buzos"
-        }
-    },
-    {
-        id: "buzo-3",
-        titulo: "Buzo Hope",
-        imagen: "../img/buzohope.jpg",
-        precio: 15000,
-        categoria: {
-            nombre: "BUZOS",
-            id: "buzos"
-        }
-    },
-    {
-        id: "buzo-4",
-        titulo: "Buzo Mush",
-        imagen: "../img/buzomush.jpg",
-        precio: 20000,
-        categoria: {
-            nombre: "BUZOS",
-            id: "buzos"
-        }
-    },
-    {
-        id: "remera-1",
-        titulo: "Remera Cele",
-        imagen: "../img/remecele.jpg",
-        precio: 5000,
-        categoria: {
-            nombre: "REMERAS",
-            id: "remeras"
-        }
-    },
-    {
-        id: "remera-2",
-        titulo: "Remera Wave",
-        imagen: "../img/remewave.jpg",
-        precio: 5000,
-        categoria: {
-            nombre: "REMERAS",
-            id: "remeras"
-        }
-    },
-    {
-        id: "gorra-1",
-        titulo: "Gorra Green",
-        imagen: "../img/gorragreen.jpg",
-        precio: 2000,
-        categoria: {
-            nombre: "ACCESORIOS",
-            id: "accesorios"
-        }
-    },
-    {
-        id: "gorra-2",
-        titulo: "Gorra Wave",
-        imagen: "../img/gorrawave.jpg",
-        precio: 1900,
-        categoria: {
-            nombre: "ACCESORIOS",
-            id: "accesorios"
-        }
-    },
-    {
-        id: "gorra-",
-        titulo: "Gorra Chill",
-        imagen: "../img/gorrachill.jpg",
-        precio: 1900,
-        categoria: {
-            nombre: "ACCESORIOS",
-            id: "accesorios"
-        }
-    }
-];
+let productos = [];
+
+fetch("./js/productos.json")
+ .then(response => response.json ())
+ .then(data => {
+    productos=data;
+    cargarProductos (productos);
+ })
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -161,6 +77,23 @@ if (productosEnCarritoLS) {
 
 
 function agregarAlCarrito (e){
+    Toastify({
+        text: "Producto agregado",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #B79CEE, #9261f5)",
+          borderRadius: "2rem",
+          color: "#D2FF58",
+          textTransform: "uppercase", 
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+    
  const idBoton = e.currentTarget.id;
  const productoAgregado = productos.find(producto => producto.id === idBoton);
 
